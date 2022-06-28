@@ -19,7 +19,7 @@
 //
 //
 //@Slf4j
-//@Order(2)
+//@Order(1)
 //public class RoleStaff implements Filter {
 //    @Autowired
 //    private JwtUtils jwtUtils;
@@ -28,24 +28,43 @@
 //
 //    @Override
 //    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-//        HttpServletResponse response = (HttpServletResponse) servletResponse;
 //        HttpServletRequest request = (HttpServletRequest) servletRequest;
-//        String alltoken = ((HttpServletRequest) servletRequest).getHeader("Authorization");
-//        if (alltoken!=null && alltoken.startsWith("Bearer ")){
-//            String token = alltoken.substring(7);
-//            Long userId = jwtUtils.getUserIdFromJWT(token);
-//            UserDetails userDetails = userDetailsServiceImp.loadUserByUserId(userId);
-//            if(userDetails != null) {
-//                // Nếu người dùng hợp lệ, set thông tin cho Seturity Context
-//                UsernamePasswordAuthenticationToken
-//                        authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-//                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//        HttpServletResponse response = (HttpServletResponse) servletResponse;
+//        try {
+//            // Lấy jwt từ request
+//            String jwt = getJwtFromRequest(request);
+//            System.out.println(jwt);
 //
-//                SecurityContextHolder.getContext().setAuthentication(authentication);
-//                filterChain.doFilter(servletRequest, servletResponse);
+//            if (jwt!=null && jwtUtils.validateToken(jwt)) {
+//                // Lấy id user từ chuỗi jwt
+////                Long userId = jwtUtils.getUserIdFromJWT(jwt);
+////                System.out.println("d: "+userId);
+//                // Lấy thông tin người dùng từ id
+////                UserDetails userDetails = userDetailsServiceImp.loadUserByUserId(userId);
+//                int a = userDetails.getAuthorities().toString().length();
+//                String role = userDetails.getAuthorities().toString().substring(1,a-1);
+//                if(userDetails != null && role.equals("ROLE_STAFF")) {
+//                    // Nếu người dùng hợp lệ, set thông tin cho Seturity Context
+//                    UsernamePasswordAuthenticationToken
+//                            authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+//                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+//
+//                    SecurityContextHolder.getContext().setAuthentication(authentication);
+//                }
 //            }
-//
+//        } catch (Exception ex) {
+//            log.error("failed on set user authentication", ex);
 //        }
 //
+//        filterChain.doFilter(request, response);
+//
+//    }
+//    private String getJwtFromRequest(HttpServletRequest request) {
+//        String bearerToken = request.getHeader("Authorization");
+//        // Kiểm tra xem header Authorization có chứa thông tin jwt không
+//        if (bearerToken!=null && bearerToken.startsWith("Bearer ")) {
+//            return bearerToken.substring(7);
+//        }
+//        return null;
 //    }
 //}

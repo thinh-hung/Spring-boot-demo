@@ -1,36 +1,33 @@
-package com.example.springbootjwt5.model;
+package com.example.springbootjwtdemo.model;
 
-import org.springframework.security.core.GrantedAuthority;
+import com.example.springbootjwtdemo.repository.UserRepository;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long idRole;
     @Enumerated(EnumType.STRING)
     @Column(name = "roleName",length = 50)
     private ERole name;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinTable(name = "role_user",
-//            joinColumns = @JoinColumn(name = "idUser"),
-//            inverseJoinColumns = @JoinColumn(name = "idRole"))
-//    private User users;
-
     public Role() {
     }
+
     public Role(ERole name) {
         this.name = name;
     }
-    public Integer getId() {
-        return id;
+
+    public Long getId() {
+        return idRole;
     }
-    public void setId(Integer id) {
-        this.id = id;
+
+    public void setId(Long id) {
+        this.idRole = id;
     }
     public ERole getName() {
         return name;
@@ -38,11 +35,5 @@ public class Role {
     public void setName(ERole name) {
         this.name = name;
     }
-//    public void setUsers(User users) {
-//        this.users = users;
-//    }
-//
-//    public User getUsers() {
-//        return users;
-//    }
+
 }

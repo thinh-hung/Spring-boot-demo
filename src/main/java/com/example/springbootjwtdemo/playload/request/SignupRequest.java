@@ -1,6 +1,4 @@
-package com.example.springbootjwt5.playload.request;
-
-import java.util.Set;
+package com.example.springbootjwtdemo.playload.request;
 
 public class SignupRequest {
     private String username;
@@ -9,6 +7,15 @@ public class SignupRequest {
 //    private Set<String> role;
     private  String role;
     private String department;
+    private String avatar;
+    private  String phone;
+    private String address;
+
+
+
+
+    public String getAvatar() {return avatar;}
+    public void setAvatar(String avatar) {this.avatar = avatar;}
 
     public String getUsername() {
         return username;
@@ -31,15 +38,6 @@ public class SignupRequest {
         this.password = password;
     }
 
-//    public Set<String> getRole() {
-//        return this.role;
-//    }
-//
-//    public void setRole(Set<String> role) {
-//        this.role = role;
-//    }
-
-
     public String getRole() {
         return role;
     }
@@ -49,4 +47,11 @@ public class SignupRequest {
 
     public String getDepartment() {return department;}
     public void setDepartment(String department) {this.department = department;}
+    public void setPhone(String phone) {this.phone = phone;}
+
+    public String getPhone() {return phone;}
+
+    public void setAddress(String address) {this.address = address;}
+
+    public String getAddress() {return address;}
 }

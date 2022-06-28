@@ -1,7 +1,7 @@
-package com.example.springbootjwt5.model;
+package com.example.springbootjwtdemo.model;
 
 public enum ERole {
-    ROLE_STAFF,
-    ROLE_LEADER,
-    ROLE_FUNDS
+    ROLE_ADMIN,
+    ROLE_USER,
+    ROLE_MODERATOR
 }

@@ -1,8 +1,9 @@
-package com.example.springbootjwt5.repository;
+package com.example.springbootjwtdemo.repository;
 
 
-import com.example.springbootjwt5.model.Department;
-import com.example.springbootjwt5.model.EDevelopment;
+
+import com.example.springbootjwtdemo.model.Department;
+import com.example.springbootjwtdemo.model.EDevelopment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

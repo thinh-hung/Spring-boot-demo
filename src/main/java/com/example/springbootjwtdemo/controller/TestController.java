@@ -1,4 +1,5 @@
-package com.example.springbootjwt5.controller;
+package com.example.springbootjwtdemo.controller;
+import org.springframework.security.access.prepost.PostFilter;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +14,20 @@ public class TestController {
         return "Public Content.";
     }
 
+
     @GetMapping("/staff")
-    @PreAuthorize("hasRole('STAFF') or hasRole('LEADER') or hasRole('FUNDS')")
-    public String userAccess() {
+    @PreAuthorize("hasAuthority('ROLE_STAFF')")
+    public String staffAccess() {
         return "Staff.";
     }
     @GetMapping("/leader")
-    @PreAuthorize("hasRole('LEADER')")
-    public String moderatorAccess() {
+    @PreAuthorize("hasAuthority('ROLE_LEADER')")
+    public String leaderAccess() {
         return "Leader Board.";
     }
     @GetMapping("/funds")
-    @PreAuthorize("hasRole('FUNDS')")
-    public String adminAccess() {
+    @PreAuthorize("hasAuthority('ROLE_FUNDS')")
+    public String fundsAccess() {
         return "Funds Board.";
     }
 }

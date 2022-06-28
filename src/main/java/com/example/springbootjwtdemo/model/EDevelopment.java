@@ -1,7 +1,7 @@
-package com.example.springbootjwt5.model;
+package com.example.springbootjwtdemo.model;
 
 public enum EDevelopment {
-    ACCOUNTING_DEPARTMENT,
-    RESOUCES_DEPARTMENT,
-    MARKETING_DEPARTMENT
+    DEPARTMENT_ACCOUNTING,
+    DEPARTMENT_RESOURCES,
+    DEPARTMENT_MARKETING
 }

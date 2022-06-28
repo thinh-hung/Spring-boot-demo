@@ -2,39 +2,41 @@ package com.example.springbootjwtdemo.playload.response;
 
 import com.example.springbootjwtdemo.model.User;
 
-public class UserInfoResponse {
+public class UserInfoResponseAM {
 
     private Long id;
     private String username;
-    private  String password;
+    private  String avatar;
     private String email;
+    private String phone;
+    private String address;
     private String roles;
     private  String departments;
 
-    public UserInfoResponse(User user){
+
+    public UserInfoResponseAM(User user){
         this.id = user.getId();
         this.username=user.getUsername();
-        this.password=user.getPassword();
         this.email=user.getEmail();
         this.roles = user.getRoles().getName().toString();
         this.departments = user.getDepartments().getName().toString();
+        this.avatar = user.getAvatar();
+        this.phone = user.getPhone();
+        this.address =user.getAddress();
     }
-    public UserInfoResponse(Long id, String username, String email,String password,String roles, String departments) {
+
+    public UserInfoResponseAM(Long id, String username, String email, String roles, String departments,String avatar) {
         this.id=id;
         this.username=username;
         this.email=email;
-        this.password=password;
         this.roles = roles;
         this.departments = departments;
+        this.avatar = avatar;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public String getAvatar() {return avatar;}
 
-    public String getPassword() {
-        return password;
-    }
+    public void setAvatar(String avatar) {this.avatar = avatar;}
 
     public Long getId() {
         return id;
@@ -69,6 +71,13 @@ public class UserInfoResponse {
     public String getDepartments() {return departments;}
 
     public void setDepartments(String departments) {this.departments = departments;}
+    public String getAddress() {return address;}
+
+    public void setAddress(String address) {this.address = address;}
+
+    public void setPhone(String phone) {this.phone = phone;}
+
+    public String getPhone() {return phone;}
 
 
 }

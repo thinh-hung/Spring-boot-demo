@@ -1,16 +1,17 @@
-package com.example.springbootjwt5.exception;
+package com.example.springbootjwtdemo.exception;
 import java.util.Date;
 
 public class ErrorDetails {
     private Date timestamp;
     private String message;
     private String details;
-
-    public ErrorDetails(Date timestamp, String message, String details) {
+    private  int status;
+    public ErrorDetails(Date timestamp, String message, String details,int status) {
         super();
         this.timestamp = timestamp;
         this.message = message;
         this.details = details;
+        this.status = status;
     }
 
     public Date getTimestamp() {
@@ -24,5 +25,7 @@ public class ErrorDetails {
     public String getDetails() {
         return details;
     }
+
+    public int getStatus() {return status;}
 }
 

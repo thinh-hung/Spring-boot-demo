@@ -1,9 +1,16 @@
-package com.example.springbootjwt5.security;
-import com.example.springbootjwt5.security.jwt.AuthEntryPointJwt;
-import com.example.springbootjwt5.security.jwt.AuthTokenFilter;
-import com.example.springbootjwt5.security.service.UserDetailsServiceImpl;
+package com.example.springbootjwtdemo.security;
+
+//import com.example.springbootjwtdemo.filter.RoleStaff;
+//import com.example.springbootjwtdemo.security.jwt.AuthEntryPointJwt;
+
+//import com.example.springbootjwtdemo.filter.RoleStaff;
+//import com.example.springbootjwtdemo.filter.RoleStaff;
+import com.example.springbootjwtdemo.security.jwt.AuthEntryPointJwt;
+import com.example.springbootjwtdemo.security.jwt.AuthTokenFilter;
+import com.example.springbootjwtdemo.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,12 +26,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 
 
-@Configuration
+//@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
         // securedEnabled = true,
         // jsr250Enabled = true,
         prePostEnabled = true)
+@SuppressWarnings("deprecation")
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${spring.h2.console.path}")
@@ -34,6 +42,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     UserDetailsServiceImpl userDetailsService;
     @Autowired
     private AuthEntryPointJwt unauthorizedHandler;
+
+//    @Autowired
+//    private AuthTokenFilter authTokenFilterh;
+
+
+
+//
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        // configure AuthenticationManager so that it knows from where to load
+//        // user for matching credentials
+//        // Use BCryptPasswordEncoder
+//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//    }
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
@@ -47,22 +69,40 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // fix H2 database console: Refused to display ' in a frame because it set 'X-Frame-Options' to 'deny'
+        http.headers().frameOptions().sameOrigin();
         http.cors().and().csrf().disable()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-                .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+                .authorizeRequests()
+                .antMatchers("/api/auth/signin").permitAll()
+                .antMatchers("/api/auth/signup").permitAll()
+                .antMatchers("/api/user/all").permitAll()
                 .antMatchers("/api/test/**").permitAll()
                 .antMatchers(h2ConsolePath + "/**").permitAll()
                 .anyRequest().authenticated();
-
-        // fix H2 database console: Refused to display ' in a frame because it set 'X-Frame-Options' to 'deny'
-        http.headers().frameOptions().sameOrigin();
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+       // http.addFilterBefore(roleStaff(), UsernamePasswordAuthenticationFilter.class);
+
+
     }
+//    @Bean
+//    public FilterRegistrationBean<RoleStaff> loggingFilter(){
+//        FilterRegistrationBean<RoleStaff> registrationBean
+//                = new FilterRegistrationBean<>();
+//
+//        registrationBean.setFilter(new RoleStaff());
+//        registrationBean.addUrlPatterns("/role/*");
+//        registrationBean.setOrder(1);
+//
+//        return registrationBean;
+//    }
+
 }

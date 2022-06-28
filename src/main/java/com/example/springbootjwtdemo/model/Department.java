@@ -1,7 +1,7 @@
-package com.example.springbootjwt5.model;
+package com.example.springbootjwtdemo.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "departments")
@@ -19,7 +19,8 @@ public class Department {
 //    @JoinTable(name = "user_department",
 //            joinColumns = @JoinColumn(name = "idDepartment"),
 //            inverseJoinColumns = @JoinColumn(name = "nameUser", referencedColumnName = "username"))
-//    private User users;
+//    @OneToMany(mappedBy = "departments")
+//    private List<User> users ;
 
 
     public Department() {

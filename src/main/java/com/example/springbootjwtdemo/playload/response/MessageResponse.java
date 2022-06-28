@@ -1,4 +1,4 @@
-package com.example.springbootjwt5.playload.response;
+package com.example.springbootjwtdemo.playload.response;
 
 public class MessageResponse {
     private String message;

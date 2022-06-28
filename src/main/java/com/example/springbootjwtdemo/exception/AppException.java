@@ -1,4 +1,4 @@
-package com.example.springbootjwt5.exception;
+package com.example.springbootjwtdemo.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
