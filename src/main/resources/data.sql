@@ -1,0 +1,7 @@
+-- INSERT INTO roles(role_name) VALUES('ROLE_STAFF');
+-- INSERT INTO roles(role_name) VALUES('ROLE_LEADER');
+-- INSERT INTO roles(role_name) VALUES('ROLE_FUNDS');
+--
+-- INSERT INTO departments(name_Deparments) VALUES('ACCOUNTING_DEPARTMENT');
+-- INSERT INTO departments(name_Deparments) VALUES('RESOUCES_DEPARTMENT');
+-- INSERT INTO departments(name_Deparments) VALUES('MARKETING_DEPARTMENT');
