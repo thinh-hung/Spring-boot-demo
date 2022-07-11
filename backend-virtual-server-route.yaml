@@ -1,0 +1,12 @@
+apiVersion: k8s.nginx.org/v1
+kind: VirtualServerRoute
+metadata:
+  name: backend-air-viewer
+  namespace: air-viewer
+spec:
+  # change this to your DNS
+  host: framgia2c.mylabserver.com
+  upstreams:
+    - name: backend-air-viewer
+      service: spring
+      port: 8080

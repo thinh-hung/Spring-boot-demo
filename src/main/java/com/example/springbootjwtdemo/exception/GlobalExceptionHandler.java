@@ -1,6 +1,6 @@
 package com.example.springbootjwtdemo.exception;
 
-import com.example.springbootjwtdemo.model.EDevelopment;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

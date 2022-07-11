@@ -23,7 +23,7 @@ public class User {
 
     @NotBlank(message = "Avatar is mandatory")
     private String avatar;
-    @NotBlank(message = "Avatar is mandatory")
+    @NotBlank(message = "Phone is mandatory")
     private String phone;
     @NotBlank(message = "Avatar is mandatory")
     private String address;
